@@ -1,6 +1,4 @@
-//need to work on next button feature
-//see w3schools how to slideshow example for css
-//that button (and also space bar) should call assignCurrentNepaliLetter function
+//add accuracy calcuating feature
 
 var currentNepaliLetter;
 var index;
@@ -152,6 +150,26 @@ const alphabetData = [
     }
 ];
 
+document.addEventListener("keydown", nextFlashcard);
+
+function nextFlashcard(e) {
+    if (e.key === ' ') {
+        for (let i = 0; i < 4; i++) {
+            const btn = document.getElementById(`btn-${i+1}`);
+            const hasCorrectClass = btn.classList.contains("btn-correct");
+            const hasIncorrectClass = btn.classList.contains("btn-incorrect");
+            if (hasCorrectClass === true) {
+                btn.classList.remove("btn-correct");
+            }
+            else if (hasIncorrectClass === true) {
+                btn.classList.remove("btn-incorrect");
+            }
+            btn.disabled = false;
+        }
+        assignCurrentNepaliLetter();
+    }
+}
+
 function randomNumber(min, max) {
     let randomNumber = Math.floor(Math.random() * (max - min) + min);
     return randomNumber;
@@ -215,4 +233,5 @@ function checkCorrectAnswer(id, answer) {
     else {
         btn.classList.add("btn-incorrect");
     }
+    btn.disabled = true;
 }
