@@ -1,0 +1,79 @@
+body {
+    font-family: 'Courier New', monospace;
+}
+
+#flashcard {
+    width: 90vw;
+    height: 90vh;
+    margin: auto;
+    border: 2px solid lightgray;
+    border-radius: 50px;
+    margin-top: 1em;
+}
+
+#progress-bar {
+    width: 90vw;
+    height: 1em;
+    margin: auto;
+    background-color: rgb(192, 192, 192);
+    border-radius: 15px;
+}
+
+#progress {
+    background-color: rgb(116, 194, 92);
+    height: 1em;
+    border-radius: 15px;
+    width: 20%;
+}
+
+#nepali-letter-div {
+    width: 100%;
+    height: 48%;
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+#nepali-letter {
+    margin-top: 2%;
+    margin-bottom: 10%;
+    color: black;
+    font-size: 20em;
+}
+
+.btn-div {
+    margin: auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    width: 48%;
+    height: 15vh;
+    background-color: rgb(250, 250, 250);
+    border: 2px solid gray;
+    color: black;
+    border-radius: 30px;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 40px;
+    margin: 0.3em 0.3em;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+  
+.btn:hover {
+    opacity: 1;
+}
+
+.btn-correct {
+    opacity: 1;
+    border: 8px solid lightgreen;
+}
+
+.btn-incorrect {
+    opacity: 1;
+    border: 8px solid rgb(255, 105, 97);
+}
