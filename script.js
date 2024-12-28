@@ -1,4 +1,5 @@
 //add accuracy calcuating feature
+//user should not be able to hit space bar without completing flashcard
 
 var currentNepaliLetter;
 var index;
@@ -182,7 +183,7 @@ function randomNumber(min, max, usedAnswers) {
 
 function assignCurrentNepaliLetter() {
     index = randomNumber(0, 36);
-    currentCorrectAnswer = alphabetData[index].correctAnswer;
+    let currentCorrectAnswer = alphabetData[index].correctAnswer;
     currentNepaliLetter = alphabetData[index].nepaliLetter;
     const nepaliLetterElem = document.getElementById('nepali-letter');
     nepaliLetterElem.textContent = currentNepaliLetter;
@@ -218,6 +219,13 @@ function checkCorrectAnswer(id, answer) {
     else {
         btn.classList.add("btn-incorrect");
     }
-    btn.disabled = true;
-    //need to disable all buttons
+
+    const btn1 = document.getElementById('btn-1');
+    const btn2 = document.getElementById('btn-2');
+    const btn3 = document.getElementById('btn-3');
+    const btn4 = document.getElementById('btn-4');
+    btn1.disabled = true;
+    btn2.disabled = true;
+    btn3.disabled = true;
+    btn3.disabled = true;
 }
