@@ -170,13 +170,19 @@ function nextFlashcard(e) {
     }
 }
 
-function randomNumber(min, max) {
+function randomNumber(min, max, usedAnswers) {
     let randomNumber = Math.floor(Math.random() * (max - min) + min);
+    
+    while (usedAnswers !== undefined && usedAnswers.includes(alphabetData[randomNumber].correctAnswer) === true) {
+        randomNumber = Math.floor(Math.random() * (max - min) + min);
+    }
+
     return randomNumber;
 }
 
 function assignCurrentNepaliLetter() {
     index = randomNumber(0, 36);
+    currentCorrectAnswer = alphabetData[index].correctAnswer;
     currentNepaliLetter = alphabetData[index].nepaliLetter;
     const nepaliLetterElem = document.getElementById('nepali-letter');
     nepaliLetterElem.textContent = currentNepaliLetter;
@@ -185,44 +191,23 @@ function assignCurrentNepaliLetter() {
     const btn2 = document.getElementById('btn-2');
     const btn3 = document.getElementById('btn-3');
     const btn4 = document.getElementById('btn-4');
-    setRandomAnswer(btn1);
-    setRandomAnswer(btn2);
-    setRandomAnswer(btn3);
-    setRandomAnswer(btn4);
+    let usedAnswers = [currentCorrectAnswer];
+    usedAnswers.push(setRandomAnswer(btn1, usedAnswers));
+    usedAnswers.push(setRandomAnswer(btn2, usedAnswers));
+    usedAnswers.push(setRandomAnswer(btn3, usedAnswers));
+    usedAnswers.push(setRandomAnswer(btn4, usedAnswers));
     let correctAnswerBtnNum = randomNumber(1, 5);
-    let correctAnswerBtn;
-    switch (correctAnswerBtnNum) {
-        case 1:
-            correctAnswerBtn = document.getElementById('btn-1');
-            break;
-        case 2:
-            correctAnswerBtn = document.getElementById('btn-2');
-            break;
-        case 3:
-            correctAnswerBtn = document.getElementById('btn-3');
-            break;
-        case 4:
-            correctAnswerBtn = document.getElementById('btn-4');
-            break;
-    }
-    correctAnswerBtn.textContent = alphabetData[index].correctAnswer;
+    const correctAnswerBtn = document.getElementById(`btn-${correctAnswerBtnNum}`);
+    correctAnswerBtn.textContent = currentCorrectAnswer;
 }
 
-function setRandomAnswer(btn) {
-    //also need to check if the answer has been set for the previous buttons
-    //possibly using array?
-    let rndIndex;
+function setRandomAnswer(btn, usedAnswers) {
+    let rndIndex = randomNumber(0, 36, usedAnswers);
+    let answer = alphabetData[rndIndex].correctAnswer;
 
-    let rndNum = randomNumber(0, 36);
-    while (rndIndex === undefined) {
-        if (rndNum !== index) {
-            rndIndex = rndNum;
-        }
-        else {
-            rndNum = randomNumber(0, 36);
-        }
-    }
-    btn.textContent = alphabetData[rndIndex].correctAnswer;
+    btn.textContent = answer;
+
+    return answer;
 }
 
 function checkCorrectAnswer(id, answer) {
@@ -234,4 +219,5 @@ function checkCorrectAnswer(id, answer) {
         btn.classList.add("btn-incorrect");
     }
     btn.disabled = true;
+    //need to disable all buttons
 }
