@@ -3,6 +3,7 @@
 
 var currentNepaliLetter;
 var index;
+var correctAnswerBtn;
 
 const alphabetData = [
     {
@@ -43,7 +44,7 @@ const alphabetData = [
     },
     {
         nepaliLetter: "ञ",
-        correctAnswer: "nya"
+        correctAnswer: "yna"
     },
     {
         nepaliLetter: "ट",
@@ -155,15 +156,21 @@ document.addEventListener("keydown", nextFlashcard);
 
 function nextFlashcard(e) {
     if (e.key === ' ') {
+        const checkInfoElem = document.getElementById('check-info');
+        checkInfoElem.textContent = "";
         for (let i = 0; i < 4; i++) {
             const btn = document.getElementById(`btn-${i+1}`);
             const hasCorrectClass = btn.classList.contains("btn-correct");
             const hasIncorrectClass = btn.classList.contains("btn-incorrect");
+            const hasShowCorrectClass = btn.classList.contains("btn-show-correct");
             if (hasCorrectClass === true) {
                 btn.classList.remove("btn-correct");
             }
             else if (hasIncorrectClass === true) {
                 btn.classList.remove("btn-incorrect");
+            }
+            else if (hasShowCorrectClass === true) {
+                btn.classList.remove("btn-show-correct");
             }
             btn.disabled = false;
         }
@@ -182,6 +189,9 @@ function randomNumber(min, max, usedAnswers) {
 }
 
 function assignCurrentNepaliLetter() {
+    const pressKeyInfoElem = document.getElementById('press-key-info');
+    pressKeyInfoElem.style.display = "none";
+
     index = randomNumber(0, 36);
     let currentCorrectAnswer = alphabetData[index].correctAnswer;
     currentNepaliLetter = alphabetData[index].nepaliLetter;
@@ -198,7 +208,7 @@ function assignCurrentNepaliLetter() {
     usedAnswers.push(setRandomAnswer(btn3, usedAnswers));
     usedAnswers.push(setRandomAnswer(btn4, usedAnswers));
     let correctAnswerBtnNum = randomNumber(1, 5);
-    const correctAnswerBtn = document.getElementById(`btn-${correctAnswerBtnNum}`);
+    correctAnswerBtn = document.getElementById(`btn-${correctAnswerBtnNum}`);
     correctAnswerBtn.textContent = currentCorrectAnswer;
 }
 
@@ -213,12 +223,21 @@ function setRandomAnswer(btn, usedAnswers) {
 
 function checkCorrectAnswer(id, answer) {
     const btn = document.getElementById(id);
+    const checkInfoElem = document.getElementById('check-info');
     if (answer === alphabetData[index].correctAnswer) {
         btn.classList.add("btn-correct");
+        checkInfoElem.style.color = "rgb(80, 210, 194)";
+        checkInfoElem.textContent = "Nice work! That's some impressive stuff! 🥳";
     }
     else {
         btn.classList.add("btn-incorrect");
+        correctAnswerBtn.classList.add("btn-show-correct");
+        checkInfoElem.style.color = "rgb(255, 87, 95)";
+        checkInfoElem.textContent = "No worries, you're still learning! 👍"
     }
+
+    const pressKeyInfoElem = document.getElementById('press-key-info');
+    pressKeyInfoElem.style.display = "block";
 
     const btn1 = document.getElementById('btn-1');
     const btn2 = document.getElementById('btn-2');
@@ -227,5 +246,5 @@ function checkCorrectAnswer(id, answer) {
     btn1.disabled = true;
     btn2.disabled = true;
     btn3.disabled = true;
-    btn3.disabled = true;
+    btn4.disabled = true;
 }
