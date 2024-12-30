@@ -4,6 +4,8 @@
 var currentNepaliLetter;
 var index;
 var correctAnswerBtn;
+var lengthOfRounds = 10;
+var isFlashcardCompleted = false;
 
 const alphabetData = [
     {
@@ -155,7 +157,7 @@ const alphabetData = [
 document.addEventListener("keydown", nextFlashcard);
 
 function nextFlashcard(e) {
-    if (e.key === ' ') {
+    if (e.key === ' ' && isFlashcardCompleted === true) {
         const checkInfoElem = document.getElementById('check-info');
         checkInfoElem.textContent = "";
         for (let i = 0; i < 4; i++) {
@@ -174,6 +176,9 @@ function nextFlashcard(e) {
             }
             btn.disabled = false;
         }
+
+        isFlashcardCompleted = false;
+
         assignCurrentNepaliLetter();
     }
 }
@@ -247,4 +252,6 @@ function checkCorrectAnswer(id, answer) {
     btn2.disabled = true;
     btn3.disabled = true;
     btn4.disabled = true;
+
+    isFlashcardCompleted = true;
 }
