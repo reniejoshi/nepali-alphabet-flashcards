@@ -1,9 +1,8 @@
-//add accuracy calcuating feature
-//user should not be able to hit space bar without completing flashcard
-
+var isRunning = true;
 var currentNepaliLetter;
 var index;
 var correctAnswerBtn;
+var flashcardCompletedCount = 0;
 var lengthOfRounds = 10;
 var isFlashcardCompleted = false;
 
@@ -157,7 +156,7 @@ const alphabetData = [
 document.addEventListener("keydown", nextFlashcard);
 
 function nextFlashcard(e) {
-    if (e.key === ' ' && isFlashcardCompleted === true) {
+    if (e.key === ' ' && isRunning === true && isFlashcardCompleted === true) {
         const checkInfoElem = document.getElementById('check-info');
         checkInfoElem.textContent = "";
         for (let i = 0; i < 4; i++) {
@@ -254,4 +253,12 @@ function checkCorrectAnswer(id, answer) {
     btn4.disabled = true;
 
     isFlashcardCompleted = true;
+
+    flashcardCompletedCount++;
+    const progressElem = document.getElementById('progress');
+    progressPercent = flashcardCompletedCount * 10;
+    progressElem.style.width = `${progressPercent}%`;
+    if (progressPercent === 100) {
+        isRunning = false;
+    }
 }
