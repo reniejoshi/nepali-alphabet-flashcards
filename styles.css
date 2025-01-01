@@ -1,5 +1,8 @@
-body {
+* {
     font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+body {
     background-color: whitesmoke;
 }
 
@@ -54,35 +57,36 @@ body {
     display: inline-block;
     width: 30vw;
     height: 12vh;
-    background-color: rgb(250, 250, 250);
-    border: 2px solid gray;
-    color: black;
     border-radius: 25px;
     padding: 16px 32px;
-    text-align: center;
     font-size: 40px;
     margin: 0.3em 0.3em;
-    opacity: 0.6;
-    transition: 0.3s;
 }
-  
-.btn:hover {
-    opacity: 1;
+
+button {
+    color: black;
+    background-color: rgb(250, 250, 250);
+    border: 1px solid black;
+    text-align: center;
+}
+
+button:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
+.btn:not(.btn-correct):not(.btn-incorrect):not(.btn-show-correct):hover {
+    border: 2px solid black;
+}
+
 .btn-correct {
-    opacity: 1;
     border: 6px solid rgb(80, 210, 194);
 }
 
 .btn-incorrect {
-    opacity: 1;
     border: 6px solid rgb(255, 87, 95);
 }
 
 .btn-show-correct {
-    opacity: 1;
     border: 6px dashed rgb(80, 210, 194);
 }
 
@@ -107,4 +111,104 @@ body {
     padding-left: 1em;
     padding-right: 1em;
     font-size: 1.2em;
+}
+
+#modal {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+    color: black;
+}
+
+#modal-content {
+    width: 50%;
+    height: fit-content;
+    background-color: white;
+    margin: 5% auto;
+    padding: 2em 5em;
+    border: 1px solid #888;
+    border-radius: 30px;
+    text-align: center;
+}
+
+hr {
+    border: 3px solid #e0e0e0;
+}
+
+.vertical-line {
+    border-left: 6px solid #e0e0e0;
+    height: 100%;
+}
+
+#accuracy-bar-container {
+    width: 100%;
+    height: 1.5em;
+    border: 2px solid #888;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+#accuracy-bar {
+    height: 1.5em;
+}
+
+#close-btn {
+    color: #aaa;
+    float: right;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+#close-btn:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+    width: 70%;
+    height: 6em;
+    margin: auto;
+}
+
+.column {
+    flex: 50%;
+    font-size: 1.5em;
+}
+
+#new-round-btn {
+    width: fit-content;
+    border-radius: 40px;
+    margin-top: 2em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5em 1em;
+    font-size: 1.3em;
+}
+
+#comment-p {
+    font-size: 2em;
+    margin-bottom: -0.2em;
+}
+
+#comment-div {
+    width: fit-content;
+    margin: auto;
+}
+
+img {
+    width: 20%;
+    height: 30%;
+}
+
+a {
+    display: block;
+}
+
+#image-container {
+    margin-top: 1em;
 }
