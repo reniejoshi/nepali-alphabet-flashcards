@@ -410,3 +410,10 @@ function newRound() {
     imageContainer.removeChild(prevImg);
     nextFlashcard();
 }
+
+window.addEventListener('beforeunload', (e) => {
+    if (isRunning === true) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+});
