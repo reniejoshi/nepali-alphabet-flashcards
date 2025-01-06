@@ -12,7 +12,7 @@ let flashcardCompletedCount = 0;
 let correctFlashcardsCount = 0;
 let progressPercent = 0;
 const modal = document.getElementById('modal');
-const progressElem = document.getElementById('progress');
+const progressElem = document.getElementById('progress-bar');
 const pressKeyInfoElem = document.getElementById('press-key-info');
 const checkInfoElem = document.getElementById('check-info');
 const btn1 = document.getElementById('btn-1');
@@ -275,7 +275,20 @@ function checkCorrectAnswer(id, answer) {
 
     flashcardCompletedCount++;
     progressPercent = flashcardCompletedCount / lengthOfRounds * 100;
-    progressElem.style.width = `${progressPercent}%`;
+    const body = document.body;
+    let width = (progressElem.offsetWidth / body.offsetWidth) * 100;
+    console.log("width = " + width);
+    console.log("progressPercent = " + progressPercent)
+    let interval = setInterval(moveProgressBar, 25);
+    function moveProgressBar() {
+        if (width <= progressPercent) {
+            progressElem.style.width = `${width}%`;
+            width++;
+        }
+        else {
+            clearInterval(interval);
+        }
+    }
 
     if (answer === alphabetData[index].correctAnswer) {
         btn.classList.add("btn-correct");
@@ -369,8 +382,8 @@ function displayModal() {
     modal.style.display = "block";
 
     let width = 0;
-    let interval = setInterval(moveBar, 15);
-    function moveBar() {
+    let interval = setInterval(moveAccuracyBar, 15);
+    function moveAccuracyBar() {
         if (width <= accuracy) {
             accuracyBar.style.width = width + "%";
             accuracyElem.innerHTML = `<b>${width}</b>%<br>Accuracy`;
