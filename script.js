@@ -412,7 +412,7 @@ function newRound() {
 }
 
 window.addEventListener('beforeunload', (e) => {
-    if (isRunning === true) {
+    if (isRunning === true && flashcardCompletedCount !== 0) {
         e.preventDefault();
         e.returnValue = '';
     }
