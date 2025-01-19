@@ -1,17 +1,18 @@
-//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch
 //***use usedIndex array parameter to also exclude tested letters
 //vary check-info messages
+//if length of rounds input is blank, default is 10
 
 let currentNepaliLetter;
 let index;
 let correctAnswerBtn;
 let isRunning = true;
 let isFlashcardCompleted = false;
-let lengthOfRounds = 10; //10
+localStorage.setItem("lengthOfRounds", String(10))
+let lengthOfRounds = Number(localStorage.getItem("lengthOfRounds"));
 let flashcardCompletedCount = 0;
 let correctFlashcardsCount = 0;
 let progressPercent = 0;
-const modal = document.getElementById('modal');
+const resultsModal = document.getElementById('results-modal');
 const progressElem = document.getElementById('progress-bar');
 const pressKeyInfoElem = document.getElementById('press-key-info');
 const checkInfoElem = document.getElementById('check-info');
@@ -296,11 +297,12 @@ function checkCorrectAnswer(id, answer) {
         checkInfoElem.textContent = "Nice work! That's some impressive stuff! 🥳";
         correctFlashcardsCount++;
         correctAnswerAudio.play();
+        const setTimeoutDuration = correctAnswerAudio.duration * 1000;
         if (progressPercent === 100) {
-            setTimeout(displayModal, 2000);
+            setTimeout(displayResultsModal, setTimeoutDuration);
         }
         else {
-            setTimeout(nextFlashcard, 2000);
+            setTimeout(nextFlashcard, setTimeoutDuration);
         }
     }
     else {
@@ -309,11 +311,12 @@ function checkCorrectAnswer(id, answer) {
         checkInfoElem.style.color = "rgb(255, 87, 95)";
         checkInfoElem.textContent = "No worries, you're still learning! 👍"
         incorrectAnswerAudio.play();
+        const setTimeoutDuration = incorrectAnswerAudio.duration * 1000;
         if (progressPercent === 100) {
-            setTimeout(displayModal, 1000); //6000
+            setTimeout(displayResultsModal, setTimeoutDuration);
         }
         else {
-            setTimeout(nextFlashcard, 6000);
+            setTimeout(nextFlashcard, setTimeoutDuration);
         }
     }
 
@@ -330,7 +333,7 @@ function calculateAccuracy() {
     return accuracy;
 }
 
-function displayModal() {
+function displayResultsModal() {
     displayModalAudio.play();
 
     const accuracyBar = document.getElementById('accuracy-bar');
@@ -345,7 +348,7 @@ function displayModal() {
         accuracyBar.style.backgroundColor = "#f44336";
     }
 
-    const commentP = document.getElementById('comment-p');
+    const commentP = document.getElementById('comment-h2');
     const img = document.createElement("img");
     let commentPText;
     let imgSrc;            
@@ -379,7 +382,7 @@ function displayModal() {
 
     correctFlashcardsCountElem.innerHTML = `<b>${correctFlashcardsCount}/${lengthOfRounds}</b><br>Correct`;
     
-    modal.style.display = "block";
+    resultsModal.style.display = "block";
 
     let width = 0;
     let interval = setInterval(moveAccuracyBar, 15);
@@ -395,12 +398,17 @@ function displayModal() {
     }
 }
 
-function closeModal() {
-    modal.style.display = "none";
+function closeResultsModal() {
+    resultsModal.style.display = "none";
+}
+
+function closeOptionsModal() {
+    const optionsModal = document.getElementById('options-modal');
+    optionsModal.style.display = "none";
 }
 
 function newRound() {
-    modal.style.display = "none";
+    resultsModal.style.display = "none";
     isRunning = true;
     flashcardCompletedCount = 0;
     correctFlashcardsCount = 0;
@@ -417,3 +425,17 @@ window.addEventListener('beforeunload', (e) => {
         e.returnValue = '';
     }
 });
+
+function displayOptionsModal() {
+    const optionsModal = document.getElementById('options-modal');
+    optionsModal.style.display = 'block';
+}
+
+function updateOptions() {
+    const lengthOfRoundsInput = document.getElementById('length-of-rounds').value;
+    lengthOfRounds = Number(lengthOfRoundsInput);
+
+    //add local storage, see pg. 96 Begin to Code
+
+    closeOptionsModal();
+}

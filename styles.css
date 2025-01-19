@@ -1,3 +1,7 @@
+:root {
+    --main-theme-color: rgb(80, 210, 194);
+}
+
 * {
     font-family: Verdana, Arial, Helvetica, sans-serif;
 }
@@ -61,7 +65,7 @@ body {
 }
 
 #progress-bar {
-    background-color: rgb(80, 210, 194);
+    background-color: var(--main-theme-color);
     height: 0.5em;
     width: 0%;
 }
@@ -114,7 +118,7 @@ button:hover {
 }
 
 .btn-correct {
-    border: 6px solid rgb(80, 210, 194);
+    border: 6px solid var(--main-theme-color);
 }
 
 .btn-incorrect {
@@ -122,7 +126,7 @@ button:hover {
 }
 
 .btn-show-correct {
-    border: 6px dashed rgb(80, 210, 194);
+    border: 6px dashed var(--main-theme-color);
 }
 
 #check-info {
@@ -148,7 +152,7 @@ button:hover {
     font-size: 1.2em;
 }
 
-#modal {
+.modal {
     display: none;
     width: 100%;
     height: 100%;
@@ -158,7 +162,7 @@ button:hover {
     color: black;
 }
 
-#modal-content {
+.modal-content {
     width: 50%;
     height: fit-content;
     background-color: white;
@@ -166,11 +170,14 @@ button:hover {
     padding: 2em 5em;
     border: 1px solid #888;
     border-radius: 30px;
+}
+
+#results-modal-content {
     text-align: center;
 }
 
 hr {
-    border: 3px solid #e0e0e0;
+    border: 0.1px solid #e0e0e0;
 }
 
 .vertical-line {
@@ -190,14 +197,14 @@ hr {
     height: 1.5em;
 }
 
-#close-btn {
+.close-btn {
     color: #aaa;
     float: right;
     font-weight: bold;
     font-size: 2em;
 }
 
-#close-btn:hover {
+.close-btn:hover {
     color: black;
     cursor: pointer;
 }
@@ -225,7 +232,7 @@ hr {
     font-size: 1.3em;
 }
 
-#comment-p {
+#comment-h2 {
     font-size: 2em;
     margin-bottom: -0.2em;
 }
@@ -246,4 +253,65 @@ a {
 
 #image-container {
     margin-top: 1em;
+}
+
+#save-options-btn {
+    color: var(--main-theme-color);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.right-align {
+    float: right;
+}
+
+#length-of-rounds {
+    padding: 0.2em;
+    width: 3em;
+    text-align: center;
+    border-radius: 2em;
+}
+
+.checkbox {
+    display: inline-block;
+    appearance: none;
+    position: relative;
+    width: 3.5em;
+    height: 2em;
+    border-radius: 25px;
+    background-color: #ccc;
+    transition: background-color .3s;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    height: 1.25rem;
+    width: 1.25rem;
+    background-color: white;
+    transition: left .3s;
+}
+
+.checkbox:checked {
+    background-color: black;
+}
+
+.checkbox:checked::after {
+    left: 70%;
+}
+
+hr {
+    clear: both;
+}
+
+#background-music-input {
+    border: 1px solid black;
+    border-radius: 2em;
+    padding: 0.2em 0.7em 0.2em;
 }

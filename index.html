@@ -1,3 +1,5 @@
+<!--https://www.w3schools.com/Html/tryit.asp?filename=tryhtml_elem_select-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +10,12 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 <body onload="assignCurrentNepaliLetter()">
-    <div id="modal">
-        <div id="modal-content">
-            <span id="close-btn" onclick="closeModal()">&times;</span>
+
+    <div id="results-modal" class="modal">
+        <div id="results-modal-content" class="modal-content">
+            <span class="close-btn" onclick="closeResultsModal()">&times;</span>
             <div id="comment-div">
-                <p id="comment-p"></p>
+                <h2 id="comment-h2"></h2>
                 <hr>
             </div>
             <div id="image-container"></div>
@@ -35,9 +38,32 @@
         </div>
     </div>
 
+    <div id="options-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeOptionsModal()">&times;</span>
+            <h2>Learning Options</h2>
+            <label for="length-of-rounds">Length of Rounds</label>
+            <input type="number" id="length-of-rounds" class="right-align" min="1" value="10" placeholder="0">
+            <hr>
+            <h3>Audio</h3>
+            <label for="sound-effects-checkbox">Sound effects</label>
+            <input type="checkbox" class="checkbox right-align" checked>
+            <br><br>
+            <label for="background-music-input">Background music</label>
+            <input list="background-music-datalist" id="background-music-input" class="right-align" value="None" placeholder="None">
+            <datalist id="background-music-datalist">
+                <option value="Jazz"></option>
+                <option value="Jungle"></option>
+            </datalist>
+            <br>
+            <hr>
+            <div id="save-options-btn" onclick="updateOptions()">Save options</div>
+        </div>
+    </div>
+
     <div id="top-bar">
         <h1>Nepali Alphabet Flashcards</h1>
-        <button id="options-btn" data-title="edit study settings">Options</button>
+        <button id="options-btn" data-title="edit study settings" onclick="displayOptionsModal()">Options</button>
     </div>
     <div id="progress-bar"></div>
     
