@@ -459,6 +459,10 @@ function setBackgroundMusic(musicInput) {
 
     musicInput = musicInput.toLowerCase();
 
+    if (musicInput === 'none') {
+        return;
+    }
+
     switch(musicInput) {
         case 'lo-fi':
             backgroundMusic = lofiAudio;
