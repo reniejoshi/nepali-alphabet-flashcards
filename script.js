@@ -17,6 +17,8 @@ const resultsModal = document.getElementById('results-modal');
 const progressElem = document.getElementById('progress-bar');
 const pressKeyInfoElem = document.getElementById('press-key-info');
 const checkInfoElem = document.getElementById('check-info');
+const soundEffectsCheckbox = document.getElementById('sound-effects-checkbox');
+let isSoundEffectsChecked = soundEffectsCheckbox.checked;
 const btn1 = document.getElementById('btn-1');
 const btn2 = document.getElementById('btn-2');
 const btn3 = document.getElementById('btn-3');
@@ -300,8 +302,16 @@ function checkCorrectAnswer(id, answer) {
         checkInfoElem.style.color = "rgb(80, 210, 194)";
         checkInfoElem.textContent = "Nice work! That's some impressive stuff! 🥳";
         correctFlashcardsCount++;
-        correctAnswerAudio.play();
-        const setTimeoutDuration = correctAnswerAudio.duration * 1000;
+        
+        let setTimeoutDuration;
+        if (isSoundEffectsChecked) {
+            correctAnswerAudio.play();
+            setTimeoutDuration = correctAnswerAudio.duration * 1000;
+        }
+        else {
+            setTimeoutDuration = 1000;
+        }
+
         if (progressPercent === 100) {
             setTimeout(displayResultsModal, setTimeoutDuration);
         }
@@ -314,8 +324,16 @@ function checkCorrectAnswer(id, answer) {
         correctAnswerBtn.classList.add("btn-show-correct");
         checkInfoElem.style.color = "rgb(255, 87, 95)";
         checkInfoElem.textContent = "No worries, you're still learning! 👍"
-        incorrectAnswerAudio.play();
-        const setTimeoutDuration = incorrectAnswerAudio.duration * 1000;
+
+        let setTimeoutDuration;
+        if (isSoundEffectsChecked) {
+            incorrectAnswerAudio.play();
+            setTimeoutDuration = incorrectAnswerAudio.duration * 1000
+        }
+        else {
+            setTimeoutDuration = 1500;
+        }
+        
         if (progressPercent === 100) {
             setTimeout(displayResultsModal, setTimeoutDuration);
         }
@@ -338,7 +356,9 @@ function calculateAccuracy() {
 }
 
 function displayResultsModal() {
-    displayModalAudio.play();
+    if (isSoundEffectsChecked) {
+        displayModalAudio.play();
+    }
 
     const accuracyBar = document.getElementById('accuracy-bar');
     let accuracy = calculateAccuracy();
@@ -438,8 +458,9 @@ function displayOptionsModal() {
 function updateOptions() {
     const lengthOfRoundsInput = document.getElementById('length-of-rounds').value;
     lengthOfRounds = Number(lengthOfRoundsInput);
-
     //add local storage, see pg. 96 Begin to Code
+
+    isSoundEffectsChecked = soundEffectsCheckbox.checked;
 
     closeOptionsModal();
 }
