@@ -439,3 +439,11 @@ function updateOptions() {
 
     closeOptionsModal();
 }
+
+function displayBackgroundMusicDropdown() {
+    const dropdown = document.getElementById('background-music-dropdown');
+    dropdown.style.display = 'block';
+
+    const caret = document.getElementById('caret');
+    caret.classList.add('rotate');
+}

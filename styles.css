@@ -109,7 +109,7 @@ button {
     text-align: center;
 }
 
-button:hover {
+.btn:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -154,30 +154,45 @@ button:hover {
 
 .modal {
     display: none;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     position: fixed;
     z-index: 1;
-    background-color: rgba(0,0,0,0.4);
     color: black;
 }
 
 .modal-content {
-    width: 50%;
     height: fit-content;
     background-color: white;
     margin: 5% auto;
     padding: 2em 5em;
-    border: 1px solid #888;
-    border-radius: 30px;
+}
+
+#results-modal {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(0.2em);
 }
 
 #results-modal-content {
     text-align: center;
+    width: 50%;
+    border: 1px solid #888;
+    border-radius: 30px;
+}
+
+#options-modal {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(0.2em);
+}
+
+#options-modal-content {
+    width: 40%;
+    border: 1px solid #888;
+    border-radius: 30px;
 }
 
 hr {
-    border: 0.1px solid #e0e0e0;
+    border: 0.01em solid #e0e0e0;
 }
 
 .vertical-line {
@@ -310,8 +325,75 @@ hr {
     clear: both;
 }
 
-#background-music-input {
-    border: 1px solid black;
-    border-radius: 2em;
-    padding: 0.2em 0.7em 0.2em;
+.option {
+    cursor: pointer;
+    padding: 0.4em 0em 0.4em 1em;
+    overflow: hidden;
+    margin: 0em;
+}
+
+.option:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropdown {
+    margin-left: auto;
+    padding: 0.8em 1.2em;
+    width: 10em;
+    height: 0.5em;
+    text-align: left;
+    position: relative;
+    border: 2px solid #888;
+}
+
+.text-icon {
+    display: inline;
+    justify-content: space-between;
+}
+
+.text-icon p {
+    display: inline;
+}
+
+#background-music-dropdown {
+    display: none;
+    width: fit-content;
+    height: fit-content;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0em;
+    top: 2.1em;
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    border: 2px solid #888;
+}
+
+.dropdown-menu p:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
+#caret {
+    transition: transform 0.1s;
+}
+
+.dropdown:hover > .text-icon > #caret {
+    transform: rotate(180deg);
+}
+
+#background-music-dropdown-btn:hover > #caret {
+    transform: rotate(180deg);
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

@@ -4,13 +4,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Nepali Alphabet Flashcards</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body onload="assignCurrentNepaliLetter()">
 
+<body onload="assignCurrentNepaliLetter()">
     <div id="results-modal" class="modal">
         <div id="results-modal-content" class="modal-content">
             <span class="close-btn" onclick="closeResultsModal()">&times;</span>
@@ -39,7 +40,7 @@
     </div>
 
     <div id="options-modal" class="modal">
-        <div class="modal-content">
+        <div id="options-modal-content" class="modal-content">
             <span class="close-btn" onclick="closeOptionsModal()">&times;</span>
             <h2>Learning Options</h2>
             <label for="length-of-rounds">Length of Rounds</label>
@@ -49,14 +50,34 @@
             <label for="sound-effects-checkbox">Sound effects</label>
             <input type="checkbox" class="checkbox right-align" checked>
             <br><br>
-            <label for="background-music-input">Background music</label>
-            <input list="background-music-datalist" id="background-music-input" class="right-align" value="None" placeholder="None">
-            <datalist id="background-music-datalist">
-                <option value="Jazz"></option>
-                <option value="Jungle"></option>
-            </datalist>
+            <div class="flex-container">
+            <p>Background music</p>
+            <!--<div id="background-music-dropdown-btn" class="right-align" onclick="displayBackgroundMusicDropdown()">
+                <p>None</p>
+                <i id="caret" class="fa fa-caret-down right-align"></i>
+            </div>        
+            <div id="background-music-dropdown" class="right-align">
+                <div class="option">None</div>
+                <div class="option">Jazz</div>
+                <div class="option">Lo-fi</div>
+            </div>-->
+            <div class="dropdown right-align">
+                <section class="text-icon">
+                    <p>None</p>
+                    <i id="caret" class="fa fa-caret-down right-align"></i>
+                </section>
+                <section class="dropdown-menu">
+                    <p class="option">None</p>
+                    <p class="option">Jazz</p>
+                    <p class="option">Lo-fi</p>
+                    <p class="option">Nature</p>
+                </section>
+            </div>
+            </div>
+
             <br>
             <hr>
+            <!--add press key option-->
             <div id="save-options-btn" onclick="updateOptions()">Save options</div>
         </div>
     </div>
