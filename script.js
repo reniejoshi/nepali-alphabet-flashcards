@@ -360,11 +360,11 @@ function displayResultsModal() {
         commentPText = "Impressive!";
         imgSrc = "/images/very-good-2.png";
     }
-    else if (accuracy <= 20) {
+    else if (accuracy <= 40) {
         commentPText = "No worries, keep learning!";
         imgSrc = "/images/okay.png";
     }
-    else if (accuracy <= 60) {
+    else if (accuracy <= 70) {
         commentPText = "Good effort!";
         imgSrc = "/images/good-job.png";
     }
