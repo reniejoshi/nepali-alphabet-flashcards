@@ -12,6 +12,7 @@ let lengthOfRounds = Number(localStorage.getItem("lengthOfRounds"));
 let flashcardCompletedCount = 0;
 let correctFlashcardsCount = 0;
 let progressPercent = 0;
+let backgroundMusic;
 const resultsModal = document.getElementById('results-modal');
 const progressElem = document.getElementById('progress-bar');
 const pressKeyInfoElem = document.getElementById('press-key-info');
@@ -24,6 +25,7 @@ const imageContainer = document.getElementById('image-container');
 const correctAnswerAudio = document.getElementById('correct-answer-audio');
 const incorrectAnswerAudio = document.getElementById('incorrect-answer-audio');
 const displayModalAudio = document.getElementById('display-modal-audio');
+const lofiAudio = document.getElementById('lofi-audio');
 
 const alphabetData = [
     {
@@ -446,4 +448,22 @@ function displayBackgroundMusicDropdown() {
 
     const caret = document.getElementById('caret');
     caret.classList.add('rotate');
+}
+
+function setBackgroundMusic(musicInput) {
+    /*if (backgroundMusic.loop === true) {
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+    }*/
+
+    musicInput = musicInput.toLowerCase();
+
+    switch(musicInput) {
+        case 'lo-fi':
+            backgroundMusic = lofiAudio;
+        break;
+    }
+
+    backgroundMusic.loop = true;
+    backgroundMusic.play();
 }
