@@ -26,6 +26,7 @@ const correctAnswerAudio = document.getElementById('correct-answer-audio');
 const incorrectAnswerAudio = document.getElementById('incorrect-answer-audio');
 const displayModalAudio = document.getElementById('display-modal-audio');
 const lofiAudio = document.getElementById('lofi-audio');
+const whistleAudio = document.getElementById('whistle-audio');
 
 const alphabetData = [
     {
@@ -451,10 +452,10 @@ function displayBackgroundMusicDropdown() {
 }
 
 function setBackgroundMusic(musicInput) {
-    /*if (backgroundMusic.loop === true) {
+    if (backgroundMusic !== undefined) {
         backgroundMusic.pause();
         backgroundMusic.currentTime = 0;
-    }*/
+    }
 
     musicInput = musicInput.toLowerCase();
 
@@ -462,6 +463,8 @@ function setBackgroundMusic(musicInput) {
         case 'lo-fi':
             backgroundMusic = lofiAudio;
         break;
+        case 'whistle':
+            backgroundMusic = whistleAudio;
     }
 
     backgroundMusic.loop = true;
