@@ -457,6 +457,9 @@ function setBackgroundMusic(musicInput) {
         backgroundMusic.currentTime = 0;
     }
 
+    const backgroundMusicInputElem = document.getElementById('background-music-input-elem');
+    backgroundMusicInputElem.textContent = musicInput;
+    
     musicInput = musicInput.toLowerCase();
 
     if (musicInput === 'none') {
