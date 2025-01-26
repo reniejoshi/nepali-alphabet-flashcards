@@ -30,6 +30,7 @@ const displayModalAudio = document.getElementById('display-modal-audio');
 const lofiAudio = document.getElementById('lofi-audio');
 const whistleAudio = document.getElementById('whistle-audio');
 const funkJazzAudio = document.getElementById('funk-jazz-audio');
+const soulAudio = document.getElementById('soul-audio');
 
 const alphabetData = [
     {
@@ -494,6 +495,9 @@ function setBackgroundMusic(musicInput) {
             break;
         case 'lo-fi':
             backgroundMusic = lofiAudio;
+            break;
+        case 'soul':
+            backgroundMusic = soulAudio;
             break;
         case 'whistle':
             backgroundMusic = whistleAudio;
