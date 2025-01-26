@@ -1,6 +1,5 @@
 //***use usedIndex array parameter to also exclude tested letters
 //vary check-info messages
-//if length of rounds input is blank, default is 10
 
 let currentNepaliLetter;
 let index;
@@ -15,7 +14,6 @@ let progressPercent = 0;
 let backgroundMusic;
 const resultsModal = document.getElementById('results-modal');
 const progressElem = document.getElementById('progress-bar');
-const pressKeyInfoElem = document.getElementById('press-key-info');
 const checkInfoElem = document.getElementById('check-info');
 const soundEffectsCheckbox = document.getElementById('sound-effects-checkbox');
 let isSoundEffectsChecked = soundEffectsCheckbox.checked;
@@ -247,8 +245,6 @@ function randomNumber(min, max, usedAnswers) {
 }
 
 function assignCurrentNepaliLetter() {
-    pressKeyInfoElem.style.display = "none";
-
     index = randomNumber(0, 36);
     let currentCorrectAnswer = alphabetData[index].correctAnswer;
     currentNepaliLetter = alphabetData[index].nepaliLetter;
@@ -349,9 +345,6 @@ function checkCorrectAnswer(id, answer) {
     if (progressPercent === 100) {
         isRunning = false;
     }
-    /*else {
-        pressKeyInfoElem.style.display = "block";
-    }*/
 }
 
 function calculateAccuracy() {

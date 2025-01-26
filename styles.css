@@ -136,22 +136,6 @@ button {
     font-size: 1.5em;
 }
 
-#press-key-info {
-    width: fit-content;
-    color: black;
-    background-color: white;
-    border: 2px solid gray;
-    border-radius: 40px;
-    text-align: center;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 1em;
-    padding-right: 1em;
-    font-size: 1.2em;
-}
-
 .modal {
     display: none;
     width: 100vw;
