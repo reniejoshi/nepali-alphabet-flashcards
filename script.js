@@ -33,6 +33,7 @@ const funkJazzAudio = document.getElementById('funk-jazz-audio');
 const soulAudio = document.getElementById('soul-audio');
 const countryAudio = document.getElementById('country-audio');
 const punkRockAudio = document.getElementById('punk-rock-audio');
+const acousticAudio = document.getElementById('acoustic-audio');
 
 const alphabetData = [
     {
@@ -492,6 +493,9 @@ function setBackgroundMusic(musicInput) {
     }
 
     switch(musicInput) {
+        case 'acoustic':
+            backgroundMusic = acousticAudio;
+            break;
         case 'country':
             backgroundMusic = countryAudio;
             break;

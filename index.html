@@ -57,6 +57,7 @@
                 </section>
                 <section class="dropdown-menu">
                     <p class="option" onclick="setBackgroundMusic(this.textContent)">None</p>
+                    <p class="option" onclick="setBackgroundMusic(this.textContent)">Acoustic</p>
                     <p class="option" onclick="setBackgroundMusic(this.textContent)">Country</p>
                     <p class="option" onclick="setBackgroundMusic(this.textContent)">Funk Jazz</p>
                     <p class="option" onclick="setBackgroundMusic(this.textContent)">Lo-fi</p>
@@ -110,6 +111,9 @@
         <source src="/audio/display-modal.mp3" type="audio/mpeg">
     </audio>
 
+    <audio id="acoustic-audio">
+        <source src="/audio/acoustic.mp3" type="audio/mpeg">
+    </audio>
     <audio id="country-audio">
         <source src="/audio/country.mp3" type="audio/mpeg">
     </audio>
