@@ -180,34 +180,6 @@ const alphabetData = [
     }
 ];
 
-//window.addEventListener("keydown", nextFlashcard);
-
-/*function nextFlashcard(e) {
-    if (e.key === ' ' && isRunning === true && isFlashcardCompleted === true) {
-        checkInfoElem.textContent = "";
-        for (let i = 0; i < 4; i++) {
-            const btn = document.getElementById(`btn-${i+1}`);
-            const hasCorrectClass = btn.classList.contains("btn-correct");
-            const hasIncorrectClass = btn.classList.contains("btn-incorrect");
-            const hasShowCorrectClass = btn.classList.contains("btn-show-correct");
-            if (hasCorrectClass === true) {
-                btn.classList.remove("btn-correct");
-            }
-            else if (hasIncorrectClass === true) {
-                btn.classList.remove("btn-incorrect");
-            }
-            else if (hasShowCorrectClass === true) {
-                btn.classList.remove("btn-show-correct");
-            }
-            btn.disabled = false;
-        }
-
-        isFlashcardCompleted = false;
-
-        assignCurrentNepaliLetter();
-    }
-}*/
-
 function nextFlashcard() {
     if (isRunning === true) {
         checkInfoElem.textContent = "";
