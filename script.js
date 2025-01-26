@@ -31,6 +31,8 @@ const lofiAudio = document.getElementById('lofi-audio');
 const whistleAudio = document.getElementById('whistle-audio');
 const funkJazzAudio = document.getElementById('funk-jazz-audio');
 const soulAudio = document.getElementById('soul-audio');
+const countryAudio = document.getElementById('country-audio');
+const punkRockAudio = document.getElementById('punk-rock-audio');
 
 const alphabetData = [
     {
@@ -490,11 +492,17 @@ function setBackgroundMusic(musicInput) {
     }
 
     switch(musicInput) {
+        case 'country':
+            backgroundMusic = countryAudio;
+            break;
         case 'funk jazz':
             backgroundMusic = funkJazzAudio;
             break;
         case 'lo-fi':
             backgroundMusic = lofiAudio;
+            break;
+        case 'punk rock':
+            backgroundMusic = punkRockAudio;
             break;
         case 'soul':
             backgroundMusic = soulAudio;
