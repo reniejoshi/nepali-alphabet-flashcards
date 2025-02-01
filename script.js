@@ -6,8 +6,7 @@ let index;
 let correctAnswerBtn;
 let isRunning = true;
 let isFlashcardCompleted = false;
-localStorage.setItem("lengthOfRounds", String(10))
-let lengthOfRounds = Number(localStorage.getItem("lengthOfRounds"));
+let lengthOfRounds;
 let flashcardCompletedCount = 0;
 let correctFlashcardsCount = 0;
 let progressPercent = 0;
@@ -16,7 +15,7 @@ const resultsModal = document.getElementById('results-modal');
 const progressElem = document.getElementById('progress-bar');
 const checkInfoElem = document.getElementById('check-info');
 const soundEffectsCheckbox = document.getElementById('sound-effects-checkbox');
-let isSoundEffectsChecked = soundEffectsCheckbox.checked;
+let isSoundEffectsChecked;
 const btn1 = document.getElementById('btn-1');
 const btn2 = document.getElementById('btn-2');
 const btn3 = document.getElementById('btn-3');
@@ -231,6 +230,39 @@ function assignCurrentNepaliLetter() {
     let correctAnswerBtnNum = randomNumber(1, 5);
     correctAnswerBtn = document.getElementById(`btn-${correctAnswerBtnNum}`);
     correctAnswerBtn.textContent = currentCorrectAnswer;
+
+    loadLocalStorageItems();
+}
+
+function loadLocalStorageItems() {
+    let lengthOfRoundsString = localStorage.getItem("lengthOfRounds");
+    lengthOfRounds = Number(lengthOfRoundsString);
+
+    let isSoundEffectsCheckedString = localStorage.getItem("isSoundEffectsChecked");
+    if (isSoundEffectsCheckedString === 'true') {
+        isSoundEffectsChecked = true;
+    }
+    else if (isSoundEffectsCheckedString === 'false') {
+        isSoundEffectsChecked = false;
+    }
+    else if (isSoundEffectsCheckedString === null) {
+        isSoundEffectsChecked = true;
+    }
+
+    soundEffectsCheckbox.checked = isSoundEffectsChecked;
+}
+
+function updateOptions() {
+    localStorage.setItem("lengthOfRounds", String(10));
+
+    const lengthOfRoundsInput = document.getElementById('length-of-rounds').value;
+    lengthOfRounds = Number(lengthOfRoundsInput);
+    //add local storage, see pg. 96 Begin to Code
+
+    isSoundEffectsChecked = soundEffectsCheckbox.checked;
+    localStorage.setItem("isSoundEffectsChecked", String(isSoundEffectsChecked));
+
+    closeOptionsModal();
 }
 
 function setRandomAnswer(btn, usedAnswers) {
@@ -256,8 +288,6 @@ function checkCorrectAnswer(id, answer) {
     progressPercent = flashcardCompletedCount / lengthOfRounds * 100;
     const body = document.body;
     let width = (progressElem.offsetWidth / body.offsetWidth) * 100;
-    console.log("width = " + width);
-    console.log("progressPercent = " + progressPercent)
     let interval = setInterval(moveProgressBar, 25);
     function moveProgressBar() {
         if (width <= progressPercent) {
@@ -276,7 +306,7 @@ function checkCorrectAnswer(id, answer) {
         correctFlashcardsCount++;
         
         let setTimeoutDuration;
-        if (isSoundEffectsChecked) {
+        if (isSoundEffectsChecked === true) {
             correctAnswerAudio.play();
             setTimeoutDuration = correctAnswerAudio.duration * 1000;
         }
@@ -422,16 +452,6 @@ window.addEventListener('beforeunload', (e) => {
 function displayOptionsModal() {
     const optionsModal = document.getElementById('options-modal');
     optionsModal.style.display = 'block';
-}
-
-function updateOptions() {
-    const lengthOfRoundsInput = document.getElementById('length-of-rounds').value;
-    lengthOfRounds = Number(lengthOfRoundsInput);
-    //add local storage, see pg. 96 Begin to Code
-
-    isSoundEffectsChecked = soundEffectsCheckbox.checked;
-
-    closeOptionsModal();
 }
 
 function displayBackgroundMusicDropdown() {
