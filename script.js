@@ -253,12 +253,10 @@ function loadLocalStorageItems() {
 }
 
 function updateOptions() {
-    localStorage.setItem("lengthOfRounds", String(10));
-
     const lengthOfRoundsInput = document.getElementById('length-of-rounds').value;
+    localStorage.setItem("lengthOfRounds", lengthOfRoundsInput);
     lengthOfRounds = Number(lengthOfRoundsInput);
-    //add local storage, see pg. 96 Begin to Code
-
+    
     isSoundEffectsChecked = soundEffectsCheckbox.checked;
     localStorage.setItem("isSoundEffectsChecked", String(isSoundEffectsChecked));
 
