@@ -24,7 +24,6 @@ body {
 #top-bar h1 {
     display: inline-block;
     margin: auto;
-    /*not center*/
 }
 
 #options-btn {
@@ -177,6 +176,7 @@ button {
 
 hr {
     border: 0.01em solid #e0e0e0;
+    clear: both;
 }
 
 .vertical-line {
@@ -303,10 +303,6 @@ a {
 
 .checkbox:checked::after {
     left: 70%;
-}
-
-hr {
-    clear: both;
 }
 
 .option {
